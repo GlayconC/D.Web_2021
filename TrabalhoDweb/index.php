@@ -4,9 +4,9 @@
     include "bibliotecas/parametros.php";
     include "bibliotecas/conexao.php";
 
-  /*  if (!isset($_SESSION['UsuarioLogin'])){
+    if (!isset($_SESSION['UsuarioLogin'])){
         header('Location: login.php');
-    }else{*/
+    }else{
 
     if (!isset($_GET['offset'])){
         $_GET['offset'] = 1;
@@ -39,5 +39,5 @@
                 <?php
             }
         }
-
+    }
         include LAYOUTS.'footer.php';   
