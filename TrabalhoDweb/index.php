@@ -4,7 +4,7 @@
     include "bibliotecas/parametros.php";
     include "bibliotecas/conexao.php";
 
-    if (!isset($_SESSION['UsuarioLogin'])){
+   if (!isset($_SESSION['UsuarioLogin'])){
         header('Location: login.php');
     }else{
 
@@ -38,6 +38,6 @@
                     <a class="btn btn-secondary" href="?offset=<?php echo $_GET['offset'] - 1 . '&modulo=' . $_GET['modulo'] . '&pagina=' . $_GET['pagina'] ; ?>">Anterior</a>
                 <?php
             }
-        }
-    }
+        }}
+
         include LAYOUTS.'footer.php';   

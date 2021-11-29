@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Login</title>
+    <title>Logar</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="loginstyle.css">
   </head>
   <body> 
     <?php
@@ -24,27 +23,27 @@
                              FROM usuarios 
                             WHERE login = :login ";
             $ResultLogin = $conn->prepare($QueryLogin);
-            $ResultLogin->bindParam(':login',$dados['username'],PDO::PARAM_STR);
+            $ResultLogin->bindParam(':login',$dados['login'],PDO::PARAM_STR);
             $ResultLogin->execute();
 
             if (($ResultLogin) and ($ResultLogin->rowCount() != 0)){
                 $RowUsuario = $ResultLogin->fetch(PDO::FETCH_ASSOC);
                 if(password_verify($dados['password'],$RowUsuario['password'])){
-                    $_SESSION['UsuarioNome'] = $RowUsuario['nome'];
-                    $_SESSION['UsuarioLogin'] = $RowUsuario['login'];
-                    $_SESSION['UsuarioPassword'] = $RowUsuario['password'];
-                    $_SESSION['UsuarioId'] = $RowUsuario['id'];
+                    $_SESSION['Nome'] = $RowUsuario['nome'];
+                    $_SESSION['Login'] = $RowUsuario['login'];
+                    $_SESSION['Password'] = $RowUsuario['password'];
+    
                     header('Location: index.php');                    
                 }else{
                     $_SESSION['MsgLogin'] = "Erro: Usuário ou senha inválidos!";
                 }
             }else{
-                $_SESSION['MsgLogin'] = "Erro: Usuário ou senha inválidos!";
+                $_SESSION['MsgLogin'] = "Erro: Usuário ou senha inválidos11!";
             }
             
         }
         if(isset($_POST['registrar'])){
-            header('Location: cadastros/usuarios/cadastro.php');
+            header('Location: registrar.php');
         }else{
     ?>
     
@@ -57,7 +56,7 @@
         ?>
         <h1>Login</h1>
         <section class="textbox">
-            <input name="username" type="text" placeholder="Username" value="">
+            <input name="login" type="text" placeholder="Login" value="">
         </section>
 
         <section class="textbox">
@@ -65,7 +64,7 @@
         </section>
         
         <input type="submit" value="Login" name="login" class="login">
-        <input type="submit" value="Registrar" name="registrar" class="login">
+        <a href="registrar.php">Registrar</a> 
     </form>
     </body>
 </html>
