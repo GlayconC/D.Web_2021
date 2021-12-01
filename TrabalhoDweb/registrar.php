@@ -6,7 +6,7 @@ if($btnCadUsuario){
 	include_once 'conexao.php';
 	$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 	//var_dump($dados);
-	$dados['password'] = md5($dados['password'], PASSWORD_DEFAULT);
+	$dados['password'] = password_hash($dados['password'], PASSWORD_DEFAULT);
 	
 	$result_usuario = "INSERT INTO usuarios (nome, email, login, password) VALUES (
 					'" .$dados['nome']. "',
